@@ -1,1 +1,169 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+#define MAX_FURY 5
+
+// Estrutura para representar uma Gousma
+typedef struct Gousma {
+    int fury; // Nível de fúria da Gousma
+    int disabled; // Flag para indicar se a Gousma foi desabilitada
+} Gousma;
+
+// Função para inicializar uma Gousma com fúria inicial
+void initializeGousma(Gousma *gousma) {
+    gousma->fury = 1; // Toda Gousma começa com fúria 1
+    gousma->disabled = 0; // Gousma começa habilitada
+}
+
+// Função para fazer uma Gousma atacar outra
+void attack(Gousma *attacker, Gousma *defender) {
+    if (attacker->disabled) {
+        printf("Essa Gousma está desabilitada e não pode atacar!\n");
+        return;
+    }
+
+    // Transferência de fúria do atacante para o defensor
+    defender->fury += attacker->fury;
+
+    // A Gousma atacante deve sempre ter pelo menos 1 de fúria
+    if (attacker->fury > 1) {
+        attacker->fury = 1;
+    }
+
+    printf("A Gousma atacou, a fúria foi transferida!\n");
+}
+
+// Função para dividir uma Gousma em duas
+int divideGousma(Gousma *gousma, Gousma *newGousma) {
+    if (gousma->fury > 1) {
+        newGousma->fury = gousma->fury / 2; // Divide a fúria
+        gousma->fury -= newGousma->fury; // A Gousma original perde metade da fúria
+        printf("A Gousma foi dividida, uma nova Gousma foi criada com fúria %d!\n", newGousma->fury);
+        return 1; // Sucesso na divisão
+    } else {
+        printf("A Gousma não tem fúria suficiente para ser dividida.\n");
+        return 0; // Falha na divisão
+    }
+}
+
+// Função para verificar se uma Gousma se desintegrou ou se ultrapassou a fúria máxima
+int checkDesintegration(Gousma *gousma) {
+    if (gousma->fury > MAX_FURY) {
+        printf("A Gousma se desintegrou devido à fúria excessiva!\n");
+        gousma->disabled = 1; // Desabilita a Gousma
+        return 1; // A Gousma se desintegrou
+    }
+    return 0; // A Gousma não se desintegrou
+}
+
+// Função para imprimir o estado de todas as Gousmas de ambos os jogadores
+void printGousmas(Gousma *jogador1Gousmas, Gousma *jogador2Gousmas) {
+    printf("\n*** Estado das Gousmas ***\n");
+    printf("Jogador 1 - Gousma 1: Fúria = %d%s\n", jogador1Gousmas[0].fury, jogador1Gousmas[0].disabled ? " (Desabilitada)" : "");
+    printf("Jogador 1 - Gousma 2: Fúria = %d%s\n", jogador1Gousmas[1].fury, jogador1Gousmas[1].disabled ? " (Desabilitada)" : "");
+    printf("Jogador 2 - Gousma 1: Fúria = %d%s\n", jogador2Gousmas[0].fury, jogador2Gousmas[0].disabled ? " (Desabilitada)" : "");
+    printf("Jogador 2 - Gousma 2: Fúria = %d%s\n", jogador2Gousmas[1].fury, jogador2Gousmas[1].disabled ? " (Desabilitada)" : "");
+}
+
+// Função para verificar se o jogador perdeu todas as Gousmas
+int checkGameOver(Gousma *gousma1, Gousma *gousma2) {
+    return (gousma1->disabled && gousma2->disabled);
+}
+
+int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+
+    Gousma jogador1Gousmas[2], jogador2Gousmas[2], novaGousma;
+    int option, gameOver = 0;
+    int jogadorAtivo = 1;
+
+    initializeGousma(&jogador1Gousmas[0]);
+    initializeGousma(&jogador1Gousmas[1]);
+    initializeGousma(&jogador2Gousmas[0]);
+    initializeGousma(&jogador2Gousmas[1]);
+
+    printf("Gousmas dos jogadores inicializadas!\n");
+    printGousmas(jogador1Gousmas, jogador2Gousmas);
+
+    while (!gameOver) {
+        printf("\n*** Turno do Jogador %d ***\n", jogadorAtivo);
+        printf("Escolha uma ação:\n");
+        printf("1. Atacar\n");
+        printf("2. Dividir Gousma\n");
+        printf("3. Verificar Desintegração\n");
+        printf("4. Sair\n");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                printf("Escolha qual Gousma você quer usar para atacar (1 ou 2): ");
+                int attacker;
+                scanf("%d", &attacker);
+
+                if (attacker < 1 || attacker > 2) {
+                    printf("Escolha inválida!\n");
+                    break;
+                }
+
+                printf("Escolha qual Gousma do inimigo você quer atacar (1 ou 2): ");
+                int defender;
+                scanf("%d", &defender);
+
+                if (defender < 1 || defender > 2) {
+                    printf("Escolha inválida!\n");
+                    break;
+                }
+
+                if (jogadorAtivo == 1) {
+                    attack(&jogador1Gousmas[attacker - 1], &jogador2Gousmas[defender - 1]);
+                } else {
+                    attack(&jogador2Gousmas[attacker - 1], &jogador1Gousmas[defender - 1]);
+                }
+                break;
+
+            case 2:
+                printf("Escolha a Gousma para dividir (1 ou 2): ");
+                int divideChoice;
+                scanf("%d", &divideChoice);
+
+                if (jogadorAtivo == 1) {
+                    divideGousma(&jogador1Gousmas[divideChoice - 1], &novaGousma);
+                } else {
+                    divideGousma(&jogador2Gousmas[divideChoice - 1], &novaGousma);
+                }
+                break;
+
+            case 3:
+                printf("Verificando desintegração...\n");
+                checkDesintegration(&jogador1Gousmas[0]);
+                checkDesintegration(&jogador1Gousmas[1]);
+                checkDesintegration(&jogador2Gousmas[0]);
+                checkDesintegration(&jogador2Gousmas[1]);
+                break;
+
+            case 4:
+                printf("Saindo do jogo...\n");
+                gameOver = 1;
+                break;
+
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+                break;
+        }
+
+        if (checkGameOver(&jogador1Gousmas[0], &jogador1Gousmas[1])) {
+            printf("O Jogador 1 perdeu todas as Gousmas! Jogador 2 é o vencedor!\n");
+            break;
+        } else if (checkGameOver(&jogador2Gousmas[0], &jogador2Gousmas[1])) {
+            printf("O Jogador 2 perdeu todas as Gousmas! Jogador 1 é o vencedor!\n");
+            break;
+        }
+
+        jogadorAtivo = (jogadorAtivo == 1) ? 2 : 1;
+        printGousmas(jogador1Gousmas, jogador2Gousmas);
+    }
+
+    return 0;
+}
 
