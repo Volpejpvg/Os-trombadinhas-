@@ -1,1 +1,73 @@
+system("cls");
+  setlocale(LC_ALL, "portuguese");
+    srand(time(0));
+    int opcao;
+    
+    do {
+        printf("\n=== Bem-vindo à Tumba Egípcia! ===\n");
+        printf("1. Iniciar jogo\n");
+        printf("2. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        system("cls");
+
+        if (opcao == 1) {
+            char *nomes[] = {"arthur", "henry", "marcello", "joao-p", "joao-m", "davi", "lucas"};
+            char jogador1[20], jogador2[20];
+            
+            printf("Lista de perdidos:\n");
+            for (int i = 0; i < 7; i++) {
+                printf("%s\n", nomes[i]);
+            }
+            printf("Jogador 1, escolha um nome da lista: ");
+            scanf("%s", jogador1);
+            printf("Jogador 2, escolha um nome da lista: ");
+            scanf("%s", jogador2);
+            
+            int vez = rand() % 2;
+            printf("O primeiro a jogar será: %s\n", (vez == 0 ? jogador1 : jogador2));
+            
+            while (1) {
+                int posicaoBotao, posicaoCobra;
+                do {
+                    posicaoBotao = rand() % 5 + 1;
+                    posicaoCobra = rand() % 5 + 1;
+                } while (posicaoBotao == posicaoCobra);
+                
+                while (1) {
+                    int escolha;
+                    printf("%s, escolha uma caixa (1 a 5): ", (vez == 0 ? jogador1 : jogador2));
+                    scanf("%d", &escolha);
+                    
+                    if (escolha == posicaoBotao) {
+                        printf("?? Parabéns! Você encontrou o botão e escapou da tumba!\n");
+                        break;
+                    } else if (escolha == posicaoCobra) {
+                        printf("?? Oh não! Você encontrou uma cobra mortal! Game Over.\n");
+                        break;
+                    } else {
+                        printf("?? A caixa está vazia. Passando a vez...\n");
+                        vez = (vez == 0) ? 1 : 0;
+                    }
+                }
+                
+                int jogarNovamente;
+                printf("\nDeseja jogar novamente? (1 = Sim, 2 = Não): ");
+                scanf("%d", &jogarNovamente);
+                if (jogarNovamente != 1) break;
+            }
+        } else if (opcao == 2) {
+            printf("Saindo... Até a próxima!\n");
+        } else {
+            printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (opcao != 2);
+    
+
+	
+	
+}
+
+
+
 
