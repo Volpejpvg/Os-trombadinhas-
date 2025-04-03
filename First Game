@@ -1,1 +1,270 @@
+int jogo1(){
+	
+	
+	int c = 0, b = 0,p = 0;
+	char a = 0;  
+	char regra[] = "No jogo perguntas e resposta funcionada de forma basica 5 perguntas de conhecimento geral\n";
+	char perg1[] = "Em qual jogo foi colocado o primeiro easter egg?\n";
+	char perg2[] = "Quando foi o inicio e o porque  da segunda guerra mundial?\n";
+	char perg3[] = "Quem foi o criador do carro?\n";
+	char perg4[] = "Qual foram os dois primeiros  herois criados pela marvel?\n";
+	char perg5[] = "Por quanto o minecraft foi vendido para microsoft?\n";
+	
+	do{	
+	
+	if (b == 0) {
+            char p = 'z';
+            system("cls");
 
+            for (int q = 0; perg1[q] != '\0'; q++) {
+                putchar(perg1[q]);
+                for (int j = 0; j < 100000; j++);
+            }
+
+            printf("\n A) Galaxian\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n B) NASL Soccer\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n C) Adventure\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n D) Asteroids\n");
+            Beep(500, 50);
+
+            printf("\n\nEscolha a Alternativa: ");
+            scanf(" %c", &p);
+            Sleep(350);
+
+            if ((p == 'a' || p == 'A') || (p == 'b' || p == 'B') || (p == 'd' || p == 'D')) {
+                system("cls");
+                printf("\n X Alternativa Errada X\n");
+                printf("\n 1 - Continuar \n");
+                scanf(" %c", &a);
+            } else if (p == 'c' || p == 'C') {
+                system("cls");
+                printf("\n CORRETO \n");
+                printf("\n 1- Continuar \n");
+                scanf(" %c", &a);
+            }
+
+            if (a == '1') { 
+                b = 2;
+            }
+            if (a == '2') {
+                jogo = 0;  
+                c = 0;
+            }
+        }
+	
+	if (b == 2) {
+            char p = 'z';
+            system("cls");
+
+            for (int q = 0; perg2[q] != '\0'; q++) {
+                putchar(perg2[q]);
+                for (int j = 0; j < 100000; j++);
+            }
+
+            printf("\n A)Em 1935 na invasão da\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n B) Em 1939 o estopim sendo a invsão d polônia\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n C)1928 depois dos bandeirantes\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n D)1925 depois da guerra do paraguai\n");
+            Beep(500, 50);
+
+            printf("\n\nEscolha a Alternativa: ");
+            scanf(" %c", &p);
+            Sleep(350);
+
+            if ((p == 'a' || p == 'A') || (p == 'c' || p == 'C') || (p == 'd' || p == 'D')) {
+                system("cls");
+                printf("\n X Alternativa Errada X\n");
+                printf("\n 1 - Continuar \n");
+                scanf(" %c", &a);
+            } else if (p == 'b' || p == 'B') {
+                system("cls");
+                printf("\n CORRETO \n");
+                printf("\n 1- Continuar \n");
+                scanf(" %c", &a);
+            }
+
+            if (a == '1') {
+                b = 3;
+            }
+            if (a == '2') {
+                jogo = 0;  
+                c = 0;
+            }
+        }
+	
+	if (b == 3) {
+            char p = 'z';
+            system("cls");
+
+            for (int q = 0; perg3[q] != '\0'; q++) {
+                putchar(perg3[q]);
+                for (int j = 0; j < 100000; j++);
+            }
+
+            printf("\n A)Ferdinand Porshe\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n B)Henry Ford\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n C)Karl Benz \n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n D)henri Becquerel\n");
+            Beep(500, 50);
+
+            printf("\n\nEscolha a Alternativa: ");
+            scanf(" %c", &p);
+            Sleep(350);
+
+            if ((p == 'a' || p == 'A') || (p == 'b' || p == 'B') || (p == 'd' || p == 'D')) {
+                system("cls");
+                printf("\n X Alternativa Errada X\n");
+                printf("\n 1 - Continuar \n");
+                scanf(" %c", &a);
+            } else if (p == 'c' || p == 'C') {
+                system("cls");
+                printf("\n CORRETO \n");
+                printf("\n 1- Continuar \n");
+                scanf(" %c", &a);
+            }
+
+            if (a == '1') {
+            
+                b = 4;
+            }
+            if (a == '2') {
+                jogo = 0;  
+                c = 0;
+            }
+        }
+	
+	if (b == 4) {
+            char p = 'z';
+            system("cls");
+
+            for (int q = 0; perg4[q] != '\0'; q++) {
+                putchar(perg4[q]);
+                for (int j = 0; j < 100000; j++);
+            }
+
+            printf("\n A)Namor e Tocha-Humana\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n B)Homen de ferro e Hulk\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n C)Doutor Estranho e Capitão America\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n D)Invncivel e Omni Man\n");
+            Beep(500, 50);
+
+            printf("\n\nEscolha a Alternativa: ");
+            scanf(" %c", &p);
+            Sleep(350);
+
+            if ((p == 'b' || p == 'B') || (p == 'c' || p == 'C') || (p == 'd' || p == 'D')) {
+                system("cls");
+                printf("\n X Alternativa Errada X\n");
+                printf("\n 1 - Continuar \n");
+                scanf(" %c", &a);
+            } else if (p == 'a' || p == 'A') {
+                system("cls");
+                printf("\n CORRETO \n");
+                printf("\n 1- Continuar \n");
+                scanf(" %c", &a);
+            }
+
+            if (a == '1') {
+          
+                b = 5;
+            }
+            if (a == '2') {
+                jogo = 0;  
+                c = 0;
+            }
+        }
+	
+	if (b == 5) {
+            char p = 'z';
+            system("cls");
+
+            for (int q = 0; perg5[q] != '\0'; q++) {
+                putchar(perg5[q]);
+                for (int j = 0; j < 100000; j++);
+            }
+
+            printf("\n A) US$ 2,5 bilhões\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n B)US$ 2,4 bilhões\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n C)US$ 2,2 bilhões\n");
+            Beep(500, 50);
+            Sleep(200);
+            printf("\n==========================\n");
+            printf("\n D) 2,1 bilhões de Esmeraldas\n");
+            Beep(500, 50);
+
+            printf("\n\nEscolha a Alternativa: ");
+            scanf(" %c", &p);
+            Sleep(350);
+
+            if ((p == 'b' || p == 'B') || (p == 'c' || p == 'C') || (p == 'd' || p == 'D')) {
+                system("cls");
+                printf("\n X Alternativa Errada X\n");
+                printf("\n 1 - Continuar \n");
+                scanf(" %c", &a);
+            } else if (p == 'a' || p == 'A') {
+                system("cls");
+                printf("\n CORRETO \n");
+                printf("\n 1- Continuar \n");
+                scanf(" %c", &a);
+            }
+
+            if (a == '1') {
+                
+                b = 2;
+            }
+        }
+		
+		system("cls");
+		printf("\n\n  0-Voltar");
+		scanf("%d", &jogo);
+		
+		
+		
+	system("cls");	
+	}while (c >= 1 && c <= 2);
+
+	
+	
+}
